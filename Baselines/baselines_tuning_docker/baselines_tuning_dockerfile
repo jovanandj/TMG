@@ -1,0 +1,16 @@
+FROM python:3.9
+
+# Set the working directory in the container
+WORKDIR /app
+
+COPY Train_and_test.py .
+
+COPY baseline_requirements.txt .
+
+RUN pip install --upgrade pip
+
+# Install any needed packages specified in requirements.txt
+RUN pip --no-cache-dir install -r baseline_requirements.txt
+
+# Run Train_and_test.py when the container launches
+CMD ["python3", "-u", "Train_and_test.py"]
